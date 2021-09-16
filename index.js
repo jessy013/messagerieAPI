@@ -6,6 +6,9 @@ const app = express();
 var corsOptions = {
     origin: "http://localhost:3000"
 };
+const db = require("./app/models");
+db.sequelize.sync(); db.sequelize.sync();
+
 app.use(cors(corsOptions));
 /**middleware */
 // parser les requêtes: content-type - application/json
