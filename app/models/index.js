@@ -18,5 +18,5 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 // importation de l'entité messagerie
-db.messagerie = require("./messagerie.model.js")(sequelize, Sequelize);
+db.messageries = require("./messagerie.model.js")(sequelize, Sequelize);
 module.exports = db;

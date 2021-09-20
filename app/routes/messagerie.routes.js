@@ -1,17 +1,17 @@
-module.exports = app => {
-    const messagerie = require("../controllers/messagerie.controller.js");
-    var router = require("express").Router();
-    // Create a new messagerie
-    router.post("/", messagerie.create);
-    // Retrieve all messagerie
-    router.get("/", messagerie.findAll);
-    // Retrieve a single messagerie with id
-    router.get("/:id", messagerie.findOne);
-    // Update a messagerie with id
-    router.put("/:id", messagerie.update);
-    // Delete a messagerie with id
-    router.delete("/:id", messagerie.delete);
-    // Delete all messagerie
-    router.delete("/", messagerie.deleteAll);
-    app.use('/api/messagerie', router);
-};
+module.exports = app => {
+    const messages = require("../controllers/messagerie.controller.js");
+      var router = require("express").Router();
+      // Create a new message
+    router.post("/", messages.create);
+      // Retrieve all messages
+    router.get("/", messages.findAll);
+      // Retrieve a single message with id
+    router.get("/:id", messages.findOne);
+      // Update a message with id
+    router.put("/:id", messages.update);
+      // Delete a message with id
+    router.delete("/:id", messages.delete);
+      // Delete all messages
+    router.delete("/", messages.deleteAll);
+    app.use('/api/messagerie', router);
+  };

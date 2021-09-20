@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         titre: {
             type: Sequelize.STRING
         },
-        Text: {
+        text: {
             type: Sequelize.BOOLEAN
         }
     });

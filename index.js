@@ -4,7 +4,10 @@ const cors = require("cors");
 const app = express();
 /** protéger le web service */
 var corsOptions = {
-    origin: "http://localhost:3000"
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
 };
 const db = require("./app/models");
 db.sequelize.sync(); db.sequelize.sync();

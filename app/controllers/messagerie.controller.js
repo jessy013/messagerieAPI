@@ -1,24 +1,22 @@
-const { messagerie } = require("../models");
 const db = require("../models");
-const messagerie = db.messagerie;
+const messagerie = db.messageries;
 const Op = db.Sequelize.Op;
-
 // Create and Save a new Message
 
 exports.create = (req, res) => {
-    console.log(req);
+    console.log(req.body);
     // Validate request
-    if (!req.body.title || !req.body.pseudo || !req.body.content) {
+    if (!req.body.text || !req.body.pseudo || !req.body.titre) {
         res.status(400).send({
-            message: "Content can not be empty!"
+            message: "text can not be empty!"
         });
         return;
     }
 
-    // Create a messagerie
-    const messagerie = {
-        title: req.body.title,
-        content: req.body.content,
+    // Create a message
+    const message = {
+        titre: req.body.titre,
+        text: req.body.text,
         pseudo: req.body.pseudo
     };
 
@@ -37,9 +35,9 @@ exports.create = (req, res) => {
 
 // Retrieve all Messages from the database.
 exports.findAll = (req, res) => {
-    const title = req.query.title;
+    const titre = req.query.titre;
 
-    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+    var condition = titre ? { titre: { [Op.like]: `%${titre}%` } } : null;
 
     messagerie.findAll({ where: condition })
         .then(data => {
@@ -60,7 +58,7 @@ exports.findOne = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(err => {
+        .catch(() => {
             res.status(500).send({
                 message: "Error retrieving Message with id=" + id
             });
@@ -85,7 +83,7 @@ exports.update = (req, res) => {
                 });
             }
         })
-        .catch(err => {
+        .catch(() => {
             res.status(500).send({
                 message: "Error updating Message with id=" + id
             });
@@ -110,7 +108,7 @@ exports.delete = (req, res) => {
                 });
             }
         })
-        .catch(err => {
+        .catch(() => {
             res.status(500).send({
                 message: "Could not delete Message with id=" + id
             });
