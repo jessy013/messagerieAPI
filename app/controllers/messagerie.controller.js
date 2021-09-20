@@ -1,5 +1,6 @@
+const { messagerie } = require("../models");
 const db = require("../models");
-const Message = db.messages;
+const messagerie = db.messagerie;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Message
@@ -14,15 +15,15 @@ exports.create = (req, res) => {
         return;
     }
 
-    // Create a Message
-    const message = {
+    // Create a messagerie
+    const messagerie = {
         title: req.body.title,
         content: req.body.content,
         pseudo: req.body.pseudo
     };
 
     // Save Message in the database
-    Message.create(message)
+    messagerie.create(message)
         .then(data => {
             res.send(data);
         })
@@ -40,7 +41,7 @@ exports.findAll = (req, res) => {
 
     var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-    Message.findAll({ where: condition })
+    messagerie.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -55,7 +56,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Message.findByPk(id)
+    messagerie.findByPk(id)
         .then(data => {
             res.send(data);
         })
@@ -70,7 +71,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Message.update(req.body, {
+    messagerie.update(req.body, {
         where: { id: id }
     })
         .then(num => {
@@ -95,7 +96,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Message.destroy({
+    messagerie.destroy({
         where: { id: id }
     })
         .then(num => {
@@ -118,7 +119,7 @@ exports.delete = (req, res) => {
 
 // Delete all Messages from the database.
 exports.deleteAll = (req, res) => {
-    Message.destroy({
+    messagerie.destroy({
         where: {},
         truncate: false
     })
@@ -134,7 +135,7 @@ exports.deleteAll = (req, res) => {
 };
 // Find all published Messages
 exports.findAllPublished = (req, res) => {
-    Message.findAll({ where: { published: true } })
+    messagerie.findAll({ where: { published: true } })
         .then(data => {
             res.send(data);
         })
