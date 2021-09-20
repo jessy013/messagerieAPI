@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.json({ message: "bienvenue dans la messagerieAPI." });
 });
-require("./app/routes/messagerie.routes").default(app);
+require("./app/routes/messagerie.routes")(app);
 
 // Configuration du serveur Web (choix du port)
 const PORT = 3000;

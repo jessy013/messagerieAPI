@@ -1,4 +1,4 @@
-export default app => {
+module.exports = app => {
     const messagerie = require("../controllers/messagerie.controller.js");
     var router = require("express").Router();
     // Create a new messagerie
